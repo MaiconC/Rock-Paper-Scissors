@@ -30,22 +30,23 @@ var playerSelection = "Paper";
 var computerSelection = getComputerChoice(); 
 
 function startRound (playerSelection, computerSelection) {
-    var roundResult;
-    console.log(roundResult);
-    if (playerSelection == "Paper", computerSelection == 2) {
+    var roundResult = "";
+    
+    if (playerSelection == "Paper" && computerSelection == 2) {
         roundResult = "Player lost. Scissors cut Paper";
-        console.log(roundResult);
-    } else if (playerSelection == "Paper", computerSelection == 1) {
+        console.log(roundResult) //debugging
+    } else if (playerSelection == "Paper" && computerSelection == 1) {
         roundResult = "Draw. Try again!";
-        console.log(roundResult);
-    } else if (playerSelection == "Paper", computerSelection == 0) {
+        console.log(roundResult)  //debugging
+    } else if (playerSelection == "Paper" && computerSelection == 0) {
         roundResult = "Player won! Paper covers Rock";
-        console.log(roundResult);
+        console.log(roundResult) //debugging
     }
 
     console.log(roundResult);
-    return 0;
+    return roundResult;
 } 
 
+console.log ("before startRound is executed"); //debugging 
 startRound(playerSelection, computerSelection);
 getComputerChoice();
