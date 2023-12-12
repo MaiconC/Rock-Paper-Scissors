@@ -1,12 +1,16 @@
-//-Inform 3 numbers to the computer
-//-each number will represent one of the options (rock, paper or scissors).
-//-make the computer choose these numbers at random.
-//-when the computer chooses it, make it appear on the console as the name of the option chosen.
-//-once it is working, make sure it doesn't output any values anymore
+let roundWinner = ``;
+let playerScore = 0;
+let computerScore = 0;
+let playerSelection = getPlayerChoice() 
+let computerSelection = getComputerChoice ()
+console.log(`You chose: ${playerSelection}`);
+console.log(`The computer chose: ${computerSelection}`); 
+console.log(game(playerSelection, computerSelection))  
+
 
 function getComputerChoice () {
     let choiceMade = Math.floor(Math.random() * 3);
-
+    
     if (choiceMade == 0) {
     choiceMade = "Rock"
 
@@ -17,36 +21,55 @@ function getComputerChoice () {
         choiceMade = "Scissors";
     }
 
-    return;
+    return choiceMade;
 }
 
-//-Make the player's input match one of the values, either by string or numbers. 
-//-once both parameters (computer's choice and player's choice) are evaluated, check the result.
-//-Explain/output the result of the round with a simple "you win/you lose"
-//-Make it recursive, so the player doesn't have to refresh the browser
+function getPlayerChoice () {
+    let playerChoice = prompt ("Type a number: Rock = 0, Paper = 1, Scissors = 2")
 
-
-var playerSelection = "Paper";
-var computerSelection = getComputerChoice(); 
-
-function startRound (playerSelection, computerSelection) {
-    var roundResult = "";
-    
-    if (playerSelection == "Paper" && computerSelection == 2) {
-        roundResult = "Player lost. Scissors cut Paper";
-        console.log(roundResult) //debugging
-    } else if (playerSelection == "Paper" && computerSelection == 1) {
-        roundResult = "Draw. Try again!";
-        console.log(roundResult)  //debugging
-    } else if (playerSelection == "Paper" && computerSelection == 0) {
-        roundResult = "Player won! Paper covers Rock";
-        console.log(roundResult) //debugging
+    if (playerChoice == 0) {
+        return "Rock";
     }
 
-    console.log(roundResult);
-    return roundResult;
-} 
+    else if (playerChoice == 1) {
+        return "Paper"
+    }
+    
+    else if (playerChoice == 2) {
+        return "Scissors";
+    }
+    else {
+        console.log("Invalid choice. Try again.")
+        return null;
+    }
+}
 
-console.log ("before startRound is executed"); //debugging 
-startRound(playerSelection, computerSelection);
-getComputerChoice();
+function game (playerSelection, computerSelection) {
+    
+    if (
+        playerSelection === "Rock" && computerSelection === "Paper" ||
+        playerSelection === "Scissors" && computerSelection === "Rock" ||
+        playerSelection === "Paper" && computerSelection === "Scissors"
+    )   {
+        roundWinner = (`Computer Won! ${computerSelection} beats ${playerSelection}`);
+        computerScore++;
+        }
+        
+      
+     if (
+        computerSelection === "Rock" && playerSelection === "Paper" ||
+        computerSelection === "Scissors" && playerSelection === "Rock" ||
+        computerSelection === "Paper" && playerSelection === "Scissors"
+        )   {
+            roundWinner = (`Player Won! ${playerSelection} beats ${computerSelection}`);
+            playerScore++
+            }
+
+    if (playerSelection === computerSelection) {
+            roundWinner = ('It is a tie!');
+            }
+    
+    console.log(roundWinner);       
+    return (`Your score is ${playerScore}, the computer's score is ${computerScore}`);
+
+}
