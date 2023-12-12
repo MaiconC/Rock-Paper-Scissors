@@ -1,12 +1,30 @@
 let roundWinner = ``;
 let playerScore = 0;
 let computerScore = 0;
-let playerSelection = getPlayerChoice() 
-let computerSelection = getComputerChoice ()
-console.log(`You chose: ${playerSelection}`);
-console.log(`The computer chose: ${computerSelection}`); 
-console.log(game(playerSelection, computerSelection))  
 
+
+do {
+    let playerSelection = getPlayerChoice() 
+    let computerSelection = getComputerChoice ()
+    console.log(`You chose: ${playerSelection}`);
+    console.log(`The computer chose: ${computerSelection}`); 
+    console.log(game(playerSelection, computerSelection))  
+}
+
+while (!endGame())
+
+console.log("Game Over!");
+console.log(`The final score is ${playerScore} points for you against the computer's score of ${computerScore}`)
+if (playerScore == 5) {
+    console.log(`Congratulations, you've won!`);
+}
+else {
+    console.log(`You lost. Good luck next time!`)
+}
+
+function endGame () {
+    return playerScore === 5 || computerScore === 5;
+}
 
 function getComputerChoice () {
     let choiceMade = Math.floor(Math.random() * 3);
@@ -73,3 +91,4 @@ function game (playerSelection, computerSelection) {
     return (`Your score is ${playerScore}, the computer's score is ${computerScore}`);
 
 }
+
